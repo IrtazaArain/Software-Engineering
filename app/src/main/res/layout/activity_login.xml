@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_button"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button"
+        android:text="Log in"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/password_edittext"
+        app:layout_constraintStart_toStartOf="@+id/password_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/password_edittext"/>
+
+
+    <EditText
+        android:id="@+id/email_edittext"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/custom_input"
+        android:hint="Email"
+        android:paddingStart="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        android:maxLength="50"
+        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="RtlSymmetry,TextFields,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:background="@drawable/custom_input"
+        android:hint="Password"
+        android:autofillHints="no"
+        android:textColorHint="#878787"
+        android:inputType="textPassword"
+        android:paddingStart="12dp"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        android:maxLength="16"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/don_t_have_an_account_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sign_up_textview"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forget_textview"
+        app:layout_constraintVertical_bias="0.922" />
+
+    <TextView
+        android:id="@+id/sign_up_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="Sign up"
+        android:textColor="@color/yellow_100"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/don_t_have_an_account_textview"
+        app:layout_constraintTop_toBottomOf="@+id/help_login_textview"
+        app:layout_constraintVertical_bias="0.922" />
+
+    <TextView
+        android:id="@+id/forget_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Forget your login details?"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/help_login_textview"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/help_login_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:text="Get help logging in"
+        android:textColor="@color/yellow_100"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/forget_textview"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d1d1d1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <ImageView
+        android:id="@+id/show_pass_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:src="@drawable/ic_visibility_off"
+        app:layout_constraintBottom_toBottomOf="@+id/password_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/password_edittext"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/password_edittext"
+        app:layout_constraintTop_toTopOf="@+id/password_edittext"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="todo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

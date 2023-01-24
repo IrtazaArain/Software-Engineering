@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Appointment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Request Appointment"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/round_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/name_edittext"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:background="@drawable/custom_input"
+        android:hint="Name"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_edittext"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_input"
+        android:hint="Email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/name_edittext"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/name_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/name_edittext" />
+
+    <EditText
+        android:id="@+id/phone_edittext"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_input"
+        android:hint="Phone"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
+
+    <EditText
+        android:id="@+id/date_edittext"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_input"
+        android:hint="DD/MM/YYYY"
+        android:importantForAutofill="no"
+        android:paddingStart="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext"
+        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintStart_toStartOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintBottom_toBottomOf="@+id/date_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/date_edittext"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/date_edittext"
+        app:layout_constraintTop_toTopOf="@+id/date_edittext"
+        app:layout_constraintVertical_bias="0.5" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/time_textinputlayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Time"
+        android:textColorHint="@color/grey_100"
+        app:boxStrokeColor="#3ab54a"
+        app:endIconTint="@color/black"
+        app:hintTextColor="#3ab54a"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext"
+        app:layout_constraintVertical_bias="0.893">
+
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/submit_button"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.665" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

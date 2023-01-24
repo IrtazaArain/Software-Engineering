@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calculator">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/round_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Salary Tax Calculator"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <EditText
+        android:id="@+id/entermonthlysalary"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:background="@drawable/custom_input"
+        android:hint="Enter Monthly Salary"
+        android:inputType="number"
+        android:paddingStart="12dp"
+        android:singleLine="true"
+        android:textColorHint="#878787"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/editTextmonthlysalary"
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.193"
+        app:prefixText="Rs"
+        app:prefixTextColor="@color/black"
+        tools:ignore="RtlSymmetry,TextFields,TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/monthlysalaryicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_calculate"
+        app:layout_constraintBottom_toBottomOf="@+id/entermonthlysalary"
+        app:layout_constraintEnd_toEndOf="@+id/monthlysalary"
+        app:layout_constraintStart_toEndOf="@+id/entermonthlysalary"
+        app:layout_constraintTop_toTopOf="@+id/entermonthlysalary" />
+
+    <TextView
+        android:id="@+id/editTextmonthlysalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Monthly Salary"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line1"
+        app:layout_constraintTop_toBottomOf="@+id/entermonthlysalary" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextmonthlysalary" />
+
+    <TextView
+        android:id="@+id/monthlysalary"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toEndOf="@id/line1"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextmonthlysalary"
+        app:layout_constraintTop_toTopOf="@+id/editTextmonthlysalary" />
+
+    <TextView
+        android:id="@+id/editTextmonthlytax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Monthly Tax"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line2"
+        app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextmonthlytax" />
+
+    <TextView
+        android:id="@+id/monthlytax"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toEndOf="@id/line2"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextmonthlytax"
+        app:layout_constraintTop_toTopOf="@+id/editTextmonthlytax" />
+
+    <TextView
+        android:id="@+id/editTextmonthlysalaryaftertax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Monthly Salary After Tax"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line3"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextmonthlysalaryaftertax" />
+
+    <TextView
+        android:id="@+id/monthlysalaryaftertax"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:layout_marginRight="4dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextmonthlysalaryaftertax"
+        app:layout_constraintEnd_toEndOf="@+id/line3"
+        app:layout_constraintTop_toTopOf="@+id/editTextmonthlysalaryaftertax" />
+
+    <TextView
+        android:id="@+id/editTextyearlysalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Yearly Salary"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line4"
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextyearlysalary" />
+
+    <TextView
+        android:id="@+id/yearlysalary"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextyearlysalary"
+        app:layout_constraintEnd_toEndOf="@+id/line4"
+        app:layout_constraintTop_toTopOf="@+id/editTextyearlysalary" />
+
+    <TextView
+        android:id="@+id/editTextyearlytax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Yearly Tax"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line5"
+        app:layout_constraintTop_toBottomOf="@+id/line4" />
+
+    <View
+        android:id="@+id/line5"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextyearlytax" />
+
+    <TextView
+        android:id="@+id/yearlytax"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextyearlytax"
+        app:layout_constraintEnd_toEndOf="@+id/line5"
+        app:layout_constraintTop_toTopOf="@+id/editTextyearlytax" />
+
+    <TextView
+        android:id="@+id/editTextyearlysalaryaftertax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Yearly Salary After Tax"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/line6"
+        app:layout_constraintTop_toBottomOf="@+id/line5" />
+
+    <View
+        android:id="@+id/line6"
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:background="@color/Green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/editTextyearlysalaryaftertax" />
+
+    <TextView
+        android:id="@+id/yearlysalaryaftertax"
+        android:layout_width="75dp"
+        android:layout_height="22dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextyearlysalaryaftertax"
+        app:layout_constraintEnd_toEndOf="@+id/line6"
+        app:layout_constraintTop_toTopOf="@+id/editTextyearlysalaryaftertax" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

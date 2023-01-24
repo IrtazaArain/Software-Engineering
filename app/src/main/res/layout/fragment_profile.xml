@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+        <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/base_cardview_1"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintVertical_bias="0.4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="16dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Name"
+                android:textColor="@color/Green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/person_name"
+                app:layout_constraintEnd_toEndOf="@+id/person_name"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/person_name" />
+
+            <EditText
+                android:id="@+id/person_name"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:text=""
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/guideline3"
+                tools:ignore="Autofill,LabelFor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Email"
+                android:textColor="@color/Green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/person_email"
+                app:layout_constraintEnd_toEndOf="@+id/person_email"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/person_email" />
+
+            <EditText
+                android:id="@+id/person_email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/person_name"
+                android:autofillHints="emailAddress"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="CNIC without dashes"
+                android:textColor="@color/Green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/person_cnic"
+                app:layout_constraintEnd_toEndOf="@+id/person_cnic"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/person_cnic" />
+
+            <EditText
+                android:id="@+id/person_cnic"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/person_email"
+                tools:ignore="Autofill,LabelFor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Mobile Number"
+                android:textColor="@color/Green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/person_number"
+                app:layout_constraintEnd_toEndOf="@+id/person_number"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/person_number" />
+
+            <EditText
+                android:id="@+id/person_number"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:text=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/person_cnic"
+                tools:ignore="Autofill,LabelFor" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="344dp"
+        android:src="@drawable/ic_person"
+        app:civ_border_color= "#1B73E8"
+        app:civ_border_width="3dp"
+        android:translationZ="@dimen/cardview_compat_inset_shadow"
+        app:layout_constraintBottom_toBottomOf="@+id/base_cardview_1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/base_cardview_1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/update_button"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:background="@drawable/custom_button"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toBottomOf="@+id/base_cardview_1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

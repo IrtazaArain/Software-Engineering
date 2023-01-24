@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    app:cardCornerRadius="7dp"
+    app:cardBackgroundColor="#D9D9D9"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/shimmer_grey" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/imageView"
+            android:background="@color/shimmer_grey"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDate"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/imageView"
+            android:background="@color/shimmer_grey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewMethod"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewTime"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/imageView"
+            android:background="@color/shimmer_grey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewAmount"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="100dp"
+            android:layout_toEndOf="@id/textViewTime"
+            android:background="@color/shimmer_grey"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Property">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/round_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/heading5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Property Tax"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"/>
+
+
+    <TextView
+        android:id="@+id/clear_fields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heading5"
+        android:layout_marginEnd="20dp"
+        android:text="Clear All"
+        android:textColor="@color/Green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/text_propertyTypeInput"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_propertyTypeInput"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:hint="Select Property Type"
+        android:textColorHint="@color/grey_100"
+        app:boxStrokeColor="#3ab54a"
+        app:endIconTint="@color/black"
+        app:hintTextColor="#3ab54a"
+        android:layout_marginTop="50dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.4"
+        app:startIconDrawable="@drawable/ic_baseline_location_city_24">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteProperty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_CityInput"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/grey_100"
+        app:hintTextColor="#3ab54a"
+        android:layout_marginTop="10dp"
+        android:hint="Select City"
+        app:endIconTint="@color/black"
+        android:layout_below="@+id/text_propertyTypeInput"
+        app:boxStrokeColor="#3ab54a"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:layout_constraintTop_toBottomOf="@+id/text_propertyTypeInput"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/addressTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3ab54a"
+            android:text="Address:"
+            app:layout_constraintBottom_toTopOf="@+id/address_editText"
+            app:layout_constraintEnd_toEndOf="@+id/address_editText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/address_editText"
+            />
+
+        <EditText
+            android:id="@+id/address_editText"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3ab54a"
+            android:inputType="textNoSuggestions|textMultiLine"
+            android:maxLength="80"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/text_CityInput"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/text_CityInput"
+            app:layout_constraintTop_toBottomOf="@+id/text_CityInput"/>
+
+
+        <TextView
+            android:id="@+id/land_area_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3ab54a"
+            android:layout_marginTop="5dp"
+            android:text="Land Area(Square Yards):"
+            app:layout_constraintBottom_toTopOf="@+id/land_area_editText"
+            app:layout_constraintEnd_toEndOf="@+id/land_area_editText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/land_area_editText" />
+
+        <EditText
+            android:id="@+id/land_area_editText"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3ab54a"
+            android:inputType="textNoSuggestions|number"
+            android:maxLength="15"
+            android:textSize="14sp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/address_editText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/address_editText"
+            app:layout_constraintTop_toBottomOf="@+id/address_editText"/>
+
+        <TextView
+            android:id="@+id/covered_area_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3ab54a"
+            android:layout_marginTop="5dp"
+            android:text="Covered Area(Square Yards):"
+            app:layout_constraintBottom_toTopOf="@+id/covered_area_editText"
+            app:layout_constraintEnd_toEndOf="@+id/covered_area_editText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/covered_area_editText"
+            />
+
+        <EditText
+            android:id="@+id/covered_area_editText"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3ab54a"
+            android:inputType="textNoSuggestions|number"
+            android:maxLength="15"
+            android:minHeight="40dp"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/land_area_editText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/land_area_editText"
+            app:layout_constraintTop_toBottomOf="@+id/land_area_editText"/>
+
+        <TextView
+            android:id="@+id/construction_type_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3ab54a"
+            android:layout_marginTop="15dp"
+            android:text="Construction Type:"
+            app:layout_constraintBottom_toTopOf="@+id/construction_type_radioGroup"
+            app:layout_constraintEnd_toEndOf="@+id/construction_type_radioGroup"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/construction_type_radioGroup"
+            />
+
+
+        <RadioGroup
+            android:id="@+id/construction_type_radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/covered_area_editText"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/covered_area_editText"
+            app:layout_constraintTop_toBottomOf="@+id/covered_area_editText">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/RCC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "RCC"/>
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/nonRCC"
+                android:layout_marginLeft="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non RCC"/>
+
+        </RadioGroup>
+
+    <ImageView
+        android:id="@+id/first_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_circle_grey_24"
+        app:layout_constraintBottom_toTopOf="@+id/begin_line"
+        app:layout_constraintEnd_toEndOf="@+id/begin_line"
+        app:layout_constraintStart_toStartOf="@+id/begin_line" />
+
+    <ImageView
+        android:id="@+id/begin_line"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:src="@drawable/grey_vertical_line"
+        app:layout_constraintBottom_toTopOf="@+id/property_submit_button"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/construction_type_radioGroup" />
+
+    <TextView
+        android:id="@+id/property_details_reviewing_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/property_submit_button"
+        android:text="Details Reviewing"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/first_dot"
+        app:layout_constraintStart_toEndOf="@+id/first_dot"
+        app:layout_constraintTop_toTopOf="@+id/first_dot" />
+
+    <ImageView
+        android:id="@+id/second_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/property_submit_button"
+        android:src="@drawable/ic_baseline_circle_grey_24"
+        app:layout_constraintEnd_toEndOf="@+id/begin_line"
+        app:layout_constraintStart_toStartOf="@+id/begin_line"
+        app:layout_constraintTop_toBottomOf="@+id/begin_line" />
+
+    <TextView
+        android:id="@+id/property_details_successfully_added_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/property_submit_button"
+        android:layout_marginTop="2dp"
+        android:text="Details Successfully Added"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/second_dot"
+        app:layout_constraintStart_toEndOf="@+id/second_dot"
+        app:layout_constraintTop_toTopOf="@+id/second_dot" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/property_submit_button"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:background="@drawable/custom_button"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
