@@ -43,7 +43,6 @@ public class Login extends AppCompatActivity {
     public static String PREFS_NAME = "credentials";
 
     String server_url = "http://192.168.1.105/project/login.php";
-    String profile_url = "http://192.168.1.107/project/profile.php";
 
 
     @Override

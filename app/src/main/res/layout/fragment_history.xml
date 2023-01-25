@@ -6,66 +6,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".History">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/history_shimmer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:duration="500">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/history_shimmer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:duration="500">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-                <include layout ="@layout/history_shimmer"></include>
-
-
-            </LinearLayout>
-
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/His_rv"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:orientation="vertical">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:layout_marginEnd="40dp"
-            android:clickable="true"
-            android:src="@android:drawable/stat_sys_download"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <include layout ="@layout/history_shimmer"></include>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+            <include layout ="@layout/history_shimmer"></include>
+
+
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/His_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:backgroundTint="@color/Green"
+        android:src="@drawable/ic_download"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am here"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="30dp"/>
 
 </FrameLayout>

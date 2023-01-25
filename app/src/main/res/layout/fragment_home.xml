@@ -50,7 +50,7 @@
                 android:id="@+id/cardView1"
                 android:layout_width="320dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#3AB54A"
                 app:cardCornerRadius="12dp"
                 android:layout_centerHorizontal="true">
@@ -110,7 +110,7 @@
                 android:columnOrderPreserved="false"
                 android:padding="10dp"
                 android:rowCount="2"
-                android:layout_marginTop="210dp">
+                android:layout_marginTop="180dp">
 
                 <!-- 1 -->
                 <androidx.cardview.widget.CardView

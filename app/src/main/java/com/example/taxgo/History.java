@@ -1,9 +1,5 @@
 package com.example.taxgo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.KeyEvent;
@@ -12,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -20,32 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import android.graphics.pdf.PdfDocument;
-
+import com.itextpdf.kernel.colors.WebColors;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import android.content.pm.PackageManager;
-import android.graphics.Typeface;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-
-import java.io.IOException;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,17 +63,8 @@ public class History extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    // declaring width and height
-    // for our PDF file.
-    int pageHeight = 1120;
-    int pagewidth = 792;
-
-    // creating a bitmap variable
-    // for storing our images
-    Bitmap bmp, scaledbmp;
-
-    // constant code for runtime permissions
-    private static final int PERMISSION_REQUEST_CODE = 200;
+    TextView memail;
+    MaterialAlertDialogBuilder builder;
 
     ShimmerFrameLayout shimmerFrameLayout;
 
@@ -85,7 +76,7 @@ public class History extends Fragment {
 
     ArrayList<History_DataModal> Data_holder;
 
-    String server_url = "http://192.168.1.105/project/fetch_transaction_history.php";
+    String server_url = "http://192.168.1.105/project/test2.php";
 
     public History() {
         // Required empty public constructor
@@ -155,7 +146,7 @@ public class History extends Fragment {
        shimmerFrameLayout = view.findViewById(R.id.history_shimmer);
        shimmerFrameLayout.startShimmer();
 
-       navigation = (NavigationView)getActivity().findViewById(R.id.nav_view);
+       navigation = getActivity().findViewById(R.id.nav_view);
 
        Menu drawer_menu = navigation.getMenu();
 
@@ -183,15 +174,65 @@ public class History extends Fragment {
 
        }
 
+       Data_holder = new ArrayList<>();
+
        recyclerView = view.findViewById(R.id.His_rv);
        recyclerView.setHasFixedSize(true);
        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+       memail = view.findViewById(R.id.email);
 
-       Data_holder = new ArrayList<>();
+
+       //SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(Login.PREFS_NAME, MODE_PRIVATE);
+       //String email = sharedPreferences.getString("useremail","irtazaarain14@gmail.com");
+
+       //memail.setText(email);
+        String email = "irtazaarain14@gmail.com";
+        memail.setText(email);
+
+       StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,response -> {
+           builder = new MaterialAlertDialogBuilder(this.getActivity(), R.style.MyAlertDialogStyle)
+                   .setTitle("Server Response")
+                   .setMessage("Response :"+response);
+           colloct(view);
+           builder.create();
+           builder.show();
+           }
+           , error -> {
+           Toast.makeText(requireActivity(),error.getMessage(), Toast.LENGTH_SHORT).show();
+           error.printStackTrace();
+
+       }){
+           @Override
+           protected Map<String, String> getParams() {
+               Map <String,String> Params = new HashMap<>();
+               Params.put("email",email);
+               return Params;
+           }
+       };
+
+       My_Singleton.getInstance(requireActivity()).addToRequestQue(stringRequest);
 
 
-       StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
+
+       btn = view.findViewById(R.id.floatingActionButton);
+
+       btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               try {
+                   printPDF();
+               } catch (FileNotFoundException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+       });
+
+       return  view;
+    }
+
+    public void colloct(View view){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -225,154 +266,97 @@ public class History extends Fragment {
                         }
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
 
-                    }
                 });
 
         //adding our string_request to queue
         My_Singleton.getInstance(getContext()).addToRequestQue(stringRequest);
+    }
+    public void printPDF() throws FileNotFoundException {
 
-        btn = view.findViewById(R.id.floatingActionButton);
+        ArrayList<String> description = new ArrayList<>();
+        ArrayList<String> amount = new ArrayList<>();
 
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.green_vertical_line);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
+        description.add("Total Income");
+        description.add("TAX Income");
 
-        // below code is used for
-        // checking our permissions.
-        if (checkPermission()) {
-            Toast.makeText(requireActivity(), "Permission Granted", Toast.LENGTH_SHORT).show();
-        } else {
-            requestPermission();
+        amount.add("363753");
+        amount.add("363753");
+
+        String date = new SimpleDateFormat("dd/LLL/yyyy", Locale.getDefault()).format(new Date()).toString();
+        String time = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date()).toString();
+        String period="08-Jan-2023 - 10-Jan-2024";
+        String medium="Online";
+        String due_date="15-Jan-2024";
+        String valid_upto="10-Jan-2024";
+
+
+        String pdf_path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdf_path, "Transaction_Report.pdf");
+        OutputStream outputStream = new FileOutputStream(file);
+
+        PdfWriter pdfWriter = new PdfWriter(file);
+        PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+        Document document = new Document(pdfDocument);
+
+        float columnWidth[] = {360};
+        Table table = new Table(columnWidth);
+        table.addCell(new Cell().add(new Paragraph("Transaction Report").setFontSize(20).setBold()).setBorder(Border.NO_BORDER));
+
+        float columnWidth1[] = {120, 220};
+        Table table1 = new Table(columnWidth1);
+
+        table1.addCell(new Cell().add(new Paragraph("TAX Year:").setFontSize(14).
+                setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(date).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Document Date: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(date).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Time: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(time).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Period: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(period).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Medium: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(medium).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Due Date: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(due_date).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        table1.addCell(new Cell().add(new Paragraph("Valid Upto: ").setFontSize(14).setBorder(Border.NO_BORDER)));
+        table1.addCell(new Cell().add(new Paragraph(valid_upto).setFontSize(14).setBorder(Border.NO_BORDER)));
+
+        float columnWidth2[] = {350, 200};
+        Table table2 = new Table(columnWidth2);
+
+        table2.addCell(new Cell().add(new Paragraph("Description")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setBold()
+                .setBackgroundColor(WebColors.getRGBColor("#FFFFFF"))
+                .setFontColor(WebColors.getRGBColor("#3ab54c"))));
+        table2.addCell(new Cell().add(new Paragraph("  Amount (Rs.)")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setBold()
+                .setBackgroundColor(WebColors.getRGBColor("#FFFFFF"))
+                .setFontColor(WebColors.getRGBColor("#3ab54c"))));
+
+        for (int i=0; i<description.size(); i++) {
+            table2.addCell(new Cell().add(new Paragraph(description.get(i))));
+            table2.addCell(new Cell().add(new Paragraph(amount.get(i)).setTextAlignment(TextAlignment.RIGHT)));
         }
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                printPDF();
-            }
-        });
+        document.add(table);
+        document.add(new Paragraph("\n"));
+        document.add(table1);
+        document.add(new Paragraph("\n"));
+        document.add(table2);
+        document.close();
 
-        return  view;
-    }
-    public void printPDF() {
+        Toast.makeText(getActivity(), "Successfully Created", Toast.LENGTH_SHORT).show();
 
-        PdfDocument pdfDocument = new PdfDocument();
 
-        // two variables for paint "paint" is used
-        // for drawing shapes and we will use "title"
-        // for adding text in our PDF file.
-        Paint paint = new Paint();
-        Paint title = new Paint();
-
-        // we are adding page info to our PDF file
-        // in which we will be passing our pageWidth,
-        // pageHeight and number of pages and after that
-        // we are calling it to create our PDF.
-        PdfDocument.PageInfo mypageInfo = new PdfDocument.PageInfo.Builder(pagewidth, pageHeight, 1).create();
-
-        // below line is used for setting
-        // start page for our PDF file.
-        PdfDocument.Page myPage = pdfDocument.startPage(mypageInfo);
-
-        // creating a variable for canvas
-        // from our page of PDF.
-        Canvas canvas = myPage.getCanvas();
-
-        // below line is used to draw our image on our PDF file.
-        // the first parameter of our drawbitmap method is
-        // our bitmap
-        // second parameter is position from left
-        // third parameter is position from top and last
-        // one is our variable for paint.
-        canvas.drawBitmap(scaledbmp, 56, 40, paint);
-
-        // below line is used for adding typeface for
-        // our text which we will be adding in our PDF file.
-        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-
-        // below line is used for setting text size
-        // which we will be displaying in our PDF file.
-        title.setTextSize(15);
-
-        // below line is sued for setting color
-        // of our text inside our PDF file.
-        title.setColor(ContextCompat.getColor(requireActivity(), R.color.purple_200));
-
-        // below line is used to draw text in our PDF file.
-        // the first parameter is our text, second parameter
-        // is position from start, third parameter is position from top
-        // and then we are passing our variable of paint which is title.
-        canvas.drawText("A portal for IT professionals.", 209, 100, title);
-        canvas.drawText("Geeks for Geeks", 209, 80, title);
-
-        // similarly we are creating another text and in this
-        // we are aligning this text to center of our PDF file.
-        title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-        title.setColor(ContextCompat.getColor(requireActivity(), R.color.purple_200));
-        title.setTextSize(15);
-
-        // below line is used for setting
-        // our text to center of PDF.
-        title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText("This is sample document which we have created.", 396, 560, title);
-
-        // after adding all attributes to our
-        // PDF file we will be finishing our page.
-        pdfDocument.finishPage(myPage);
-
-        // below line is used to set the name of
-        // our PDF file and its path.
-        File file = new File(Environment.getExternalStorageDirectory(), "GFG.pdf");
-
-        try {
-            // after creating a file name we will
-            // write our PDF file to that location.
-            pdfDocument.writeTo(new FileOutputStream(file));
-
-            // below line is to print toast message
-            // on completion of PDF generation.
-            Toast.makeText(requireActivity(), "PDF file generated successfully.", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            // below line is used
-            // to handle error
-            e.printStackTrace();
-        }
-        // after storing our pdf to that
-        // location we are closing our PDF file.
-        pdfDocument.close();
-    }
-
-    private boolean checkPermission() {
-        // checking of permissions.
-        int permission1 = ContextCompat.checkSelfPermission(requireActivity(), WRITE_EXTERNAL_STORAGE);
-        int permission2 = ContextCompat.checkSelfPermission(requireActivity(), READ_EXTERNAL_STORAGE);
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermission() {
-        // requesting permissions if not provided.
-        ActivityCompat.requestPermissions(requireActivity(), new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0) {
-
-                // after requesting permissions we are showing
-                // users a toast message of permission granted.
-                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-
-                if (writeStorage && readStorage) {
-                    Toast.makeText(requireActivity(), "Permission Granted..", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(requireActivity(), "Permission Denied.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
     }
 }
